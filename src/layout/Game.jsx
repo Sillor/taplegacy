@@ -3,37 +3,83 @@ import Upgrades from './Upgrades';
 import Clicker from './Clicker';
 
 function Game() {
-  const [taps, setTaps] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [clicks, setClicks] = useState(0);
-  const [cps, setCPS] = useState(0);
+  const [countedCps, setCountedCps] = useState(0);
+  const [perSec, setPerSec] = useState(0);
+  const [userData, setUserData] = useState({
+    taps: 0,
+    upgrades: { basic: 0, rare: 0, epic: 0, legendary: 0, mythic: 0 },
+  });
 
-  const addTaps = () => {
-    setTaps((oldTaps) => oldTaps + 1);
-    setClicks((oldClicks) => oldClicks + 1);
+  const updateLocalStorage = () => {
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  const addTaps = (amount) => {
+    setUserData((oldUserData) => ({
+      ...oldUserData,
+      taps: oldUserData.taps + amount,
+    }));
+    updateLocalStorage();
+    setClicks((oldClicks) => oldClicks + amount);
+  };
+
+  const upgradeClicks = (amount, name, price) => {
+    if (price <= userData.taps) {
+      if (userData.upgrades[name] === 0) {
+        setUserData((oldUserData) => ({
+          ...oldUserData,
+          upgrades: {
+            ...oldUserData.upgrades,
+            [name]: amount,
+          },
+        }));
+        setUserData((oldUserData) => ({
+          ...oldUserData,
+          taps: oldUserData.taps - price,
+        }));
+        updateLocalStorage();
+      } else {
+        alert('You already have this upgrade!');
+      }
+    } else {
+      alert('Not enough taps!');
+    }
   };
 
   useEffect(() => {
+    let total = 0;
+    Object.values(userData.upgrades).forEach((val) => (total += val));
+    setPerSec(total);
+  }, [userData]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      setSeconds((oldSeconds) => oldSeconds + 0.1);
-    }, 100);
+      setSeconds((oldSeconds) => oldSeconds + 1);
+    }, 1000);
+
+    if (localStorage.getItem('user'))
+      setUserData(JSON.parse(localStorage.getItem('user')));
+    else localStorage.setItem('user', JSON.stringify(userData));
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (seconds >= 1) {
-      setCPS((clicks / seconds).toFixed(2));
+      setCountedCps((clicks / seconds).toFixed(2));
       setSeconds(0);
       setClicks(0);
+      addTaps(perSec);
     }
     // console.log(`S: ${seconds}\tC: ${clicks}\tCPS: ${cps}\t`);
   }, [seconds, clicks]);
 
   return (
     <div className="flex justify-center flex-wrap gap-4">
-      <Clicker taps={taps} addTaps={addTaps} cps={cps} />
-      <Upgrades />
+      <Clicker taps={userData.taps} addTaps={addTaps} countedCps={countedCps} />
+      <Upgrades upgradeClicks={upgradeClicks} />
     </div>
   );
 }
