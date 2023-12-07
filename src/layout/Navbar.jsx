@@ -4,9 +4,9 @@ function Navbar() {
       <h1 className="nav--title font-extrabold text-2xl md:text-4xl">
         TapLegacy
       </h1>
-      <a className="nav--achievements text-lg md:text-2xl font-bold">
-        Achievements 🏆
-      </a>
+      <button className="nav--achievements text-lg md:text-2xl font-extrabold border-2 border-white-400 backdrop-filter backdrop-blur-sm bg-black bg-opacity-10 rounded-xl p-4">
+        <span className="hidden sm:inline">Achievements</span> 🏆
+      </button>
     </nav>
   );
 }
