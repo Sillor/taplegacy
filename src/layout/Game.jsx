@@ -27,7 +27,9 @@ function Game() {
 
   const upgradeClicks = (amount, name, price) => {
     if (price <= userData.taps) {
-      if (userData.upgrades[name] === 0) {
+      if (userData.upgrades[name] > 0) {
+        alert('You already have this upgrade!');
+      } else {
         setUserData((oldUserData) => ({
           ...oldUserData,
           upgrades: {
@@ -40,8 +42,6 @@ function Game() {
           taps: oldUserData.taps - price,
         }));
         updateLocalStorage();
-      } else {
-        alert('You already have this upgrade!');
       }
     } else {
       alert('Not enough taps!');
@@ -79,7 +79,7 @@ function Game() {
   return (
     <div className="flex justify-center flex-wrap gap-4">
       <Clicker taps={userData.taps} addTaps={addTaps} countedCps={countedCps} />
-      <Upgrades upgradeClicks={upgradeClicks} />
+      <Upgrades upgradeClicks={upgradeClicks} userData={userData} />
     </div>
   );
 }

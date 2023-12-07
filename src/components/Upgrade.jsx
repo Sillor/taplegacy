@@ -1,4 +1,6 @@
-function Upgrade({ name, price, styles, upgradeClicks, increase }) {
+function Upgrade({ name, price, styles, upgradeClicks, increase, userData }) {
+  const isUpgradeBought = userData.upgrades[name] > 0;
+
   return (
     <div
       className={`mt-2 p-4 upgrade h-full w-full ${styles.bg} rounded-md bg-opacity-10 border ${styles.border} max-h-28`}
@@ -12,14 +14,20 @@ function Upgrade({ name, price, styles, upgradeClicks, increase }) {
       <div className="flex justify-between items-center">
         <p className="text-sm font-bold">
           Price:{' '}
-          <span className={`${styles.text} font-normal`}>{price} Taps</span>
+          <span className={`${styles.text} font-normal`}>
+            {price.toLocaleString()} Taps
+          </span>
         </p>
-        <button
-          className="p-1 text-xs rounded border border-white bg-white bg-opacity-10"
-          onClick={() => upgradeClicks(increase, name, price)}
-        >
-          Upgrade!
-        </button>
+        {isUpgradeBought ? (
+          <span className="text-sm font-bold text-green-500">Bought</span>
+        ) : (
+          <button
+            className="p-1 text-xs rounded border border-white bg-white bg-opacity-10"
+            onClick={() => upgradeClicks(increase, name, price)}
+          >
+            Upgrade!
+          </button>
+        )}
       </div>
     </div>
   );
