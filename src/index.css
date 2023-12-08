@@ -36,19 +36,3 @@ body {
     }
   }
 }
-
-@keyframes rotateGradient {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-}
-
-.rainbow-border {
-  background-clip: padding-box;
-  border: 1px solid transparent;
-  border-image: linear-gradient(45deg, #f06, #9f6, #06f, #f06) 1;
-  border-image-slice: 1;
-}
