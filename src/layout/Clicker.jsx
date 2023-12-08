@@ -11,7 +11,7 @@ function Clicker({ taps, addTaps, countedCps }) {
         TAPS
       </h2>
       <button
-        className="w-full p-6 text-5xl font-extrabold border-2 border-white-400 rounded-xl tap--button bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm active:text-4xl h-24"
+        className="w-full p-6 text-5xl font-extrabold border-2 border-white-400 rounded-xl hideoverlay bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm active:text-4xl h-24"
         onClick={(e) => {
           addTaps(1);
         }}
