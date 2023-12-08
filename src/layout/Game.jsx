@@ -21,16 +21,27 @@ function Game({
             ...oldUserData.upgrades,
             [name]: amount,
           },
-        }));
-        setUserData((oldUserData) => ({
-          ...oldUserData,
           taps: oldUserData.taps - price,
+          stats: {
+            ...oldUserData.stats,
+            upgradesPurchased: oldUserData.stats.upgradesPurchased + 1,
+          },
         }));
         updateLocalStorage();
       }
     } else {
       alert('Not enough taps!');
     }
+  };
+
+  const buttonClicked = () => {
+    setUserData((oldUserData) => ({
+      ...oldUserData,
+      stats: {
+        ...oldUserData.stats,
+        buttonClicked: oldUserData.stats.buttonClicked + 1,
+      },
+    }));
   };
 
   useEffect(() => {
@@ -41,7 +52,12 @@ function Game({
 
   return (
     <div className="flex justify-center flex-wrap gap-4">
-      <Clicker taps={userData.taps} addTaps={addTaps} countedCps={countedCps} />
+      <Clicker
+        taps={userData.taps}
+        addTaps={addTaps}
+        countedCps={countedCps}
+        buttonClicked={buttonClicked}
+      />
       <Upgrades upgradeClicks={upgradeClicks} userData={userData} />
     </div>
   );

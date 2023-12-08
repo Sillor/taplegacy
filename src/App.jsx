@@ -12,7 +12,13 @@ function App() {
   const [perSec, setPerSec] = useState(0);
   const [userData, setUserData] = useState({
     taps: 0,
-    upgrades: { basic: 0, rare: 0, epic: 0, legendary: 0, mythic: 0 },
+    upgrades: {},
+    stats: {
+      buttonClicked: 0,
+      upgradesPurchased: 0,
+      maxCps: 0,
+      timeSpent: 0,
+    },
   });
 
   useEffect(() => {
@@ -33,8 +39,18 @@ function App() {
       setSeconds(0);
       setClicks(0);
       addTaps(perSec);
+
+      if (countedCps > userData.stats.maxCps)
+        userData.stats.maxCps = countedCps;
+
+      setUserData((oldUserData) => ({
+        ...oldUserData,
+        stats: {
+          ...oldUserData.stats,
+          timeSpent: oldUserData.stats.timeSpent + 1,
+        },
+      }));
     }
-    // console.log(`S: ${seconds}\tC: ${clicks}\tCPS: ${cps}\t`);
   }, [seconds, clicks]);
 
   const addTaps = (amount) => {
@@ -67,7 +83,10 @@ function App() {
               />
             }
           />
-          <Route path="/achievements" element={<Achievements />} />
+          <Route
+            path="/achievements"
+            element={<Achievements userData={userData} />}
+          />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

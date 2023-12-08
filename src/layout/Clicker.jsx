@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Clicker({ taps, addTaps, countedCps }) {
+function Clicker({ taps, addTaps, countedCps, buttonClicked }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full p-4 md:max-w-[40vw] lg:max-w-[30vw] md:h-[80vh] w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border-2 border-white">
+    <div className="flex flex-col items-center justify-center h-full p-8 md:max-w-[40vw] lg:max-w-[30vw] md:h-[80vh] w-full bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border-2 border-white">
       <h2 className="mb-4 text-2xl font-bold text-center">
         {Intl.NumberFormat('en-US', {
           notation: 'compact',
@@ -11,9 +11,10 @@ function Clicker({ taps, addTaps, countedCps }) {
         TAPS
       </h2>
       <button
-        className="w-full p-6 text-5xl font-extrabold border-2 border-white-400 rounded-xl hideoverlay bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm active:text-4xl h-24"
-        onClick={(e) => {
+        className="w-full p-6 text-5xl font-extrabold border-2 border-white-400 rounded-xl hideoverlay bg-white bg-opacity-5 backdrop-filter backdrop-blur-sm active:text-4xl h-24 transition hover:scale-105"
+        onClick={() => {
           addTaps(1);
+          buttonClicked();
         }}
       >
         TAP!
