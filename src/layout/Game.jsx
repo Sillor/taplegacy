@@ -2,7 +2,14 @@ import React, { useEffect } from 'react';
 import Upgrades from './Upgrades';
 import Clicker from './Clicker';
 
-function Game({ userData, setUserData, countedCps, setPerSec, addTaps }) {
+function Game({
+  userData,
+  setUserData,
+  countedCps,
+  setPerSec,
+  addTaps,
+  updateLocalStorage,
+}) {
   const upgradeClicks = (amount, name, price) => {
     if (price <= userData.taps) {
       if (userData.upgrades[name] > 0) {

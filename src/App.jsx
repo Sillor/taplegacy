@@ -62,6 +62,7 @@ function App() {
                 countedCps={countedCps}
                 setPerSec={setPerSec}
                 addTaps={addTaps}
+                updateLocalStorage={updateLocalStorage}
               />
             }
           />
