@@ -87,7 +87,7 @@ function App() {
             path="/achievements"
             element={<Achievements userData={userData} />}
           />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<Settings userData={userData} />} />
         </Route>
       </Routes>
     </BrowserRouter>
