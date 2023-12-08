@@ -81,7 +81,7 @@ function Achievements({ userData }) {
         <h1 className="font-bold text-3xl p-2">Achievements</h1>
         {achElements}
 
-        <Link to="/" className="hideoverlay">
+        <Link to="/" className="hideoverlay self-end">
           <button className="text-md font-extrabold border-2 bg-black bg-opacity-30 rounded-md p-2">
             Back
           </button>

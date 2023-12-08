@@ -37,12 +37,12 @@ function Settings({ userData }) {
         </div>
 
         <button
-          className="text-md font-extrabold border-2 bg-black bg-opacity-30 rounded-md p-2 text-red-600 mt-8"
+          className="text-md font-extrabold border-2 bg-black bg-opacity-30 rounded-md p-2 text-red-600 mt-8 self-end"
           onClick={handleRemoveData}
         >
           Remove data
         </button>
-        <Link to="/" className="hideoverlay">
+        <Link to="/" className="hideoverlay self-end">
           <button className="text-md font-extrabold border-2 bg-black bg-opacity-30 rounded-md p-2">
             Back
           </button>
