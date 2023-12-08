@@ -22,6 +22,16 @@ function Achievements() {
             Back
           </button>
         </Link>
+
+        <button
+          className="text-md font-extrabold border-2 bg-black bg-opacity-30 rounded-md p-2 text-red-600"
+          onClick={() => {
+            localStorage.removeItem('user');
+            location.reload();
+          }}
+        >
+          Remove data
+        </button>
       </div>
     </div>
   );
