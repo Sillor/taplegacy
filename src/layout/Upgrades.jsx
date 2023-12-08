@@ -312,7 +312,13 @@ function Upgrades({ upgradeClicks, userData }) {
   return (
     <div className="md:max-w-[40vw] lg:max-w-[40vw] xl:max-w-3xl md:h-[80vh] overflow-y-auto p-4 md:px-6 h-full w-full bg-black rounded-md bg-clip-padding bg-opacity-60 border-2 border-white no-scrollbar flex flex-col">
       <h1 className="font-bold text-3xl p-2">Upgrades</h1>
-      {upgElems}
+      {userData.taps > 2 ? (
+        upgElems
+      ) : (
+        <p className="text-lg text-white p-2">
+          No upgrades available yet. Keep tapping to unlock more!
+        </p>
+      )}
     </div>
   );
 }
