@@ -9,7 +9,8 @@
 
 body {
   backdrop-filter: grayscale(100%) blur(8px);
-  background-image: url(../images/background-city.jpg);
+  background-image: url(../images/background-space.jpg);
+  /* background-color: rgb(15, 15, 15); */
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
