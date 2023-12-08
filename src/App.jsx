@@ -1,5 +1,6 @@
 import Game from './layout/Game';
 import Achievements from './layout/Achievements';
+import Settings from './layout/Settings';
 import Layout from './layout/Layout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
@@ -67,6 +68,7 @@ function App() {
             }
           />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
