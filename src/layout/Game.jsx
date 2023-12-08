@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Upgrades from './Upgrades';
 import Clicker from './Clicker';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Game({
   userData,
@@ -13,7 +15,7 @@ function Game({
   const upgradeClicks = (amount, name, price) => {
     if (price <= userData.taps) {
       if (userData.upgrades[name] > 0) {
-        alert('You already have this upgrade!');
+        toast.warning('You already have this upgrade!');
       } else {
         setUserData((oldUserData) => ({
           ...oldUserData,
@@ -28,9 +30,10 @@ function Game({
           },
         }));
         updateLocalStorage();
+        toast.success('Upgrade purchased!');
       }
     } else {
-      alert('Not enough taps!');
+      toast.error('Not enough taps!');
     }
   };
 
@@ -59,6 +62,7 @@ function Game({
         buttonClicked={buttonClicked}
       />
       <Upgrades upgradeClicks={upgradeClicks} userData={userData} />
+      <ToastContainer theme="dark" position="bottom-right" />
     </div>
   );
 }
