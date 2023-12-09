@@ -36,6 +36,10 @@ Here's what makes the magic happen:
 - A portal to the **Achievement List**, where your triumphs are celebrated with rewards.
 - Check your stats and remove data in the **Settings** route.
 
+## Live Deployment 🚀
+
+Check out the live deployment of TapLegacy: [TapLegacy](https://taplegacy.netlify.app/)
+
 ## How to Play 📜
 
 ### Get Started on Your Tapping Quest
