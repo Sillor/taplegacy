@@ -1,5 +1,5 @@
 # TapLegacy - An Idle Clicking Game
-### Embark on a Tapping Odyssey 🚀
+## Start Your Tapping Adventure 🚀
 Welcome to TapLegacy, a cool web game where you kick off your tapping journey with a simple click. Explore the world of upgrades, gather taps, and aim for achievements.
 
 ## Making the Game 🎩✨
